@@ -4,7 +4,6 @@ const skillsModel = require('./skills.model')
 UserSkillsSchema = new mongoose.Schema({
   level: {
     type: Number,
-    require: [true, 'Level is required']
   },
   yearsOfExperience: {
     type: String,
@@ -59,35 +58,27 @@ const rebooterSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: [true, 'Name is required']
   },
   userSurname: {
     type: String,
-    required: [true, 'User Surname is required']
   },
   dateOfBirth: {
     type: Date,
-    require: [true, 'Date Of Birth is required']
   },
   country: {
     type: String,
-    require: [true, 'Country is required']
   },
   province: {
     type: String,
-    require: [true, 'Province is required']
   },
   adress: {
     type: String,
-    require: [true, 'Adress is required']
   },
   phoneNumber: {
     type: Number,
-    require: [true, 'Phone number is required']
   },
   aboutMe: {
     type: String,
-    require: [true, 'Aboutme is required']
   },
   skills: [UserSkillsSchema]
   
