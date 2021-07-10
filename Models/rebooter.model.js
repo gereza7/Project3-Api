@@ -1,4 +1,42 @@
-const mongoose = requiere('mongoose')
+const mongoose = require('mongoose')
+const skillsModel = require('./skills.model')
+
+UserSkillsSchema = new mongoose.Schema({
+  level: {
+    type: Number,
+    require: [true, 'Level is required']
+  },
+  yearsOfExperience: {
+    type: String,
+    enum:[
+      'Menos de 1 año',
+      '1 año',
+      '2 años',
+      '3 años',
+      '4 años',
+      'Más de 5 años'
+    ] 
+  },
+  latestUse:{
+    type: String,
+    enum:[
+      'Actualmente',
+      'menos de 1 año',
+      '2 años',
+      '3 años',
+      '4 años',
+      'Más de 5 años'
+    ] 
+  },
+  certifications: {
+    type: Array
+  },
+  skills: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "skills"
+  }
+ 
+})
 
 const rebooterSchema = new mongoose.Schema({
   userEmail: {
@@ -54,35 +92,6 @@ const rebooterSchema = new mongoose.Schema({
   skills: [UserSkillsSchema]
   
 })
-UserSkillsSchema = new mongoose.Schema({
-  level: {
-    type: Number,
-    require: [true, 'Level is required']
-  },
-  yearsOfExperience: {
-    type: String,
-    enum:[
-      'Menos de 1 año',
-      '1 año',
-      '2 años',
-      '3 años',
-      '4 años',
-      'Más de 5 años'
-    ] 
-  },
-  latestUse:{
-    type: String,
-    enum:[
-      'Actualmente',
-      'menos de 1 año',
-      '2 años',
-      '3 años',
-      '4 años',
-      'Más de 5 años'
-    ] 
-  },
-  certifications: {
-    type: Array
-  },
- 
-})
+
+const rebooterModel = mongoose.model("rebooter",rebooterSchema)
+module.exports = rebooterModel

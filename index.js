@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
+const router = require ('./Router/index')
 
 mongoose
     .connect(process.env.MONGO_URL, {
@@ -18,6 +19,7 @@ mongoose
 
     app.use(express.json())
     app.use(cors())
+    app.use('/api', router)
     app.use(morgan('combined'))
 
     app.listen( process.env.PORT, (err) => {
