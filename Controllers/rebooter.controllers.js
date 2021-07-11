@@ -11,7 +11,7 @@ function createRebooter (req, res){
 }
 
 function updateRebooter(req,res){
-  rebooterModel.findByIdAndUpdate(req.params.rebooterId, req.body, { new: true })
+  rebooterModel.findByIdAndUpdate(res.locals.id, req.body, { new: true })
   .then ((rebooter) => {
       res.json(rebooter)
   })
