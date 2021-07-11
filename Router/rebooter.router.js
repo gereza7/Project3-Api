@@ -5,8 +5,8 @@ const {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllReb
 rebooterRouter.post("/", auth, createRebooter)
 rebooterRouter.put("/me", auth, updateRebooter)
 rebooterRouter.delete("/me", auth, deleteRebooter)
-rebooterRouter.get("/", auth, getAllRebooter)
-rebooterRouter.get("/all", auth, getAllRebooter)
+rebooterRouter.get("/", auth, getOneRebooter)
+rebooterRouter.get("/all",  getAllRebooter)
 
 function auth(req, res, next) {
 
