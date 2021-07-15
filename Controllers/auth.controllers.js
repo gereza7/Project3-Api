@@ -36,13 +36,13 @@ async function signUp(req, res) {
 async function login(req, res) {
   try {
     const user = await rebooterModel.findOne({ userEmail: req.body.userEmail })
-    if (!user) return res.json('Wrong email')
+    if (!user) return res.status(400).json('Wrong email')
 
     bcrypt.compare(
       req.body.userPwd,
       user.userPwd,
       (err, result) => {
-        if (!result) return res.json('Wrong password')
+        if (!result) return res.status(400).json('Wrong password')
 
         const token = jwt.sign(
           {
@@ -61,7 +61,7 @@ async function login(req, res) {
         })
       })
   } catch (error) {
-    return status(500).json({ err: 'problem creating account' + error })
+    return status(400).json({ err: 'problem creating account' + error })
 
   }
 
