@@ -1,83 +1,71 @@
-const rebooterModel = require ('../Models/rebooter.model')
-const bcrypt = require ('bcrypt')
-const jwt = require ('jsonwebtoken')
+const rebooterModel = require('../Models/rebooter.model')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
-function signUp (req, res){
-  const hashed_pwd = bcrypt.hashSync(req.body.userPwd, 10)
-  const hashed_body = {
-    userEmail: req.body.userEmail,
-    userPwd: req.body.userPwd,
+async function signUp(req, res) {
+  try {
+    const hashed_pwd = await bcrypt.hash(req.body.userPwd, 10)
+    const user = await rebooterModel.create({
+      userEmail: req.body.userEmail,
+      userPwd: hashed_pwd
+    })
+
+
+    const token = jwt.sign(
+      {
+        userName: user.userName,
+        id: user._id,
+        userEmail: user.userEmail
+      },
+      process.env.SECRET
+    )
+
+    const resUser =
+
+      res.json({
+        id: user._id,
+        userName: user.userName,
+        userEmail: user.userEmail,
+        token: token
+      })
+  } catch (error) {
+    return status(500).json({ err: 'problem creating account' + error })
   }
-  rebooterModel.create(hashed_body)
-      .then((user) => {
-
-        const insideToken = {
-          userName: user.userName,
-          id: user._id,
-          userEmail: user.userEmail
-        }
-
-        const token = jwt.sign(
-          insideToken,
-          process.env.SECRET
-        )
-
-        const resUser = {
-          id: user._id,
-          userName: user.userName,
-          userEmail: user.userEmail,
-          token: token
-        }
-
-        res.json(resUser)
-      })
-      .catch((err) => {
-        res.json(err)
-      })
 }
 
-function login(req, res) {
-  /*
-    req.body = {
-      email,
-      pwd
-    }
-  */
+async function login(req, res) {
+  try {
+    const user = await rebooterModel.findOne({ userEmail: req.body.userEmail })
+    if (!user) return res.json('Wrong email')
 
-  rebooterModel.findOne({ userEmail: req.body.userEmail })
-    .then((user) => {
-      if (!user) res.json('Wrong email')
+    bcrypt.compare(
+      req.body.userPwd,
+      user.userPwd,
+      (err, result) => {
+        if (!result) return res.json('Wrong password')
 
-      bcrypt.compare(
-        req.body.userPwd, 
-        user.userPwd, 
-        (err, result) => {
-          if (err) res.json('Wrong password')
-          
-          const insideToken = {
+        const token = jwt.sign(
+          {
             userName: user.userName,
             userEmail: user.userEmail,
             id: user._id
-          }
-          const token = jwt.sign(
-            insideToken,
-            process.env.SECRET,
-          )
+          },
+          process.env.SECRET,
+        )
 
-          resUser = {
-            userName: user.userName,
-            userEmail: user.userEmail,
-            id: user._id,
-            token: token
-          }
-          
-          res.json(resUser)
+        res.json({
+          userName: user.userName,
+          userEmail: user.userEmail,
+          id: user._id,
+          token: token
         })
+      })
+  } catch (error) {
+    return status(500).json({ err: 'problem creating account' + error })
 
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  }
+
+
 }
 
 module.exports = {
