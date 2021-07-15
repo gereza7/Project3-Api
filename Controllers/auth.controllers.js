@@ -54,10 +54,12 @@ async function login(req, res) {
         )
 
         res.json({
-          userName: user.userName,
-          userEmail: user.userEmail,
-          id: user._id,
-          token: token
+          token: token,
+          user: {
+            userName: user.userName,
+            userEmail: user.userEmail,
+            id: user._id,
+          }
         })
       })
   } catch (error) {
