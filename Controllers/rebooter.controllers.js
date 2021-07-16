@@ -32,7 +32,7 @@ function deleteRebooter(req,res){
 }
 
 function getOneRebooter (req, res){
-  rebooterModel.findById('60f09a60851c8b00043d0f1a')
+  rebooterModel.findById(res.locals.id)
   .then ((rebooter) => {
      res.json(rebooter)
   })
