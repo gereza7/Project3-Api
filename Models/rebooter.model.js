@@ -6,7 +6,8 @@ const academy = new mongoose.Schema({
   specialty: String,
   studyCenter: String,
   country: String,
-  duration: String
+  duration: String,
+  currentlyStuding: Boolean
 })
 
 const experience = new mongoose.Schema({
