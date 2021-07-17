@@ -1,7 +1,50 @@
 const mongoose = require('mongoose')
 const skillsModel = require('./skills.model')
 
-UserSkillsSchema = new mongoose.Schema({
+const academy = new mongoose.Schema({
+  academicDegree: String,
+  specialty: String,
+  studyCenter: String,
+  country: String,
+  duration: String
+})
+
+const experience = new mongoose.Schema({
+  position: String,
+  enterprise: String,
+  startDate: Date,
+  endDate: Date,
+  shortDescription: String,
+  fullDescription: String
+})
+
+const projects = new mongoose.Schema({
+  name: String,
+  shortDescription: String,
+  projectLink: String,
+  fullDescription: String
+})
+
+const languages = new mongoose.Schema({
+  language: String,
+  level: String,
+  certifications: String,
+  experience: String
+})
+
+const softSkills = new mongoose.Schema({
+  name: String,
+  shortDescription: String,
+})
+
+const links = new mongoose.Schema({
+  gitHub: String,
+  linkedin: String,
+  twitter: String,
+  contactEmail: String
+})
+
+const userSkillsSchema = new mongoose.Schema({
   level: {
     type: Number,
   },
@@ -80,9 +123,16 @@ const rebooterSchema = new mongoose.Schema({
   aboutMe: {
     type: String,
   },
-  skills: [UserSkillsSchema]
-  
+  skills: [userSkillsSchema],
+  academy: [academy],
+  experience: [experience],
+  projects: [projects],
+  languages: [languages],
+  softSkills: [softSkills],
+  links: [links]
 })
+
+
 
 const rebooterModel = mongoose.model("rebooter",rebooterSchema)
 module.exports = rebooterModel
