@@ -7,7 +7,7 @@ rebooterRouter.put("/me", auth, updateRebooter)
 rebooterRouter.delete("/me", auth, deleteRebooter)
 rebooterRouter.get("/me", auth, getOneRebooter)
 rebooterRouter.get("/all",  getAllRebooter)
-rebooterRouter.get("/me/softskills", auth,getSoftSkills)
+rebooterRouter.put("/me/softskills", auth,getSoftSkills)
 
 function auth(req, res, next) {
 
