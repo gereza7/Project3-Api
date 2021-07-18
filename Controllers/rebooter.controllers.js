@@ -58,7 +58,7 @@ function getSoftSkills (req, res){
   rebooterModel.findById(res.locals.id)
   .then ((rebooter) => {
     rebooter.softSkills = []
-    req.headers.body.forEach(element => {
+    req.body.forEach(element => {
     rebooter.softSkills.push(element)
   });
   rebooter.save(function (err) {
