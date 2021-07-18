@@ -121,6 +121,9 @@ const rebooterSchema = new mongoose.Schema({
   selectCountryCode: {
 type: String
   },
+  IWantToBe: {
+    type: String
+  },
   phoneNumber: {
     type: Number,
   },
