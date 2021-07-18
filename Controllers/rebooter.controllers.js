@@ -90,4 +90,22 @@ function getAcademy (req, res){
 })
 }
 
-module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllRebooter, getSoftSkills, getAcademy}
+function getExperience (req, res){
+  rebooterModel.findById(res.locals.id)
+  .then ((rebooter) => {
+    rebooter.experience = []
+    req.body.forEach(element => {
+    rebooter.experience.push(element)
+  });
+  rebooter.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+  res.json(rebooter)
+})
+.catch((err) => {
+  res.json(err)
+})
+}
+
+module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllRebooter, getSoftSkills, getAcademy, getExperience}
