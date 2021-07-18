@@ -13,8 +13,7 @@ const academy = new mongoose.Schema({
 const experience = new mongoose.Schema({
   position: String,
   enterprise: String,
-  startDate: Date,
-  endDate: Date,
+  yearsOfExperience: String,
   shortDescription: String,
   fullDescription: String
 })
