@@ -110,6 +110,7 @@ function getExperience (req, res){
 
 function getSkills (req, res){
   rebooterModel.findById(res.locals.id)
+  .populate('skills.skills')
   .then ((rebooter) => {
     rebooter.skills = []
     req.body.forEach(element => {
