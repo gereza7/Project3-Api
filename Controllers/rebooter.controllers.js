@@ -75,7 +75,7 @@ function getSoftSkills (req, res){
 function getAcademy (req, res){
   rebooterModel.findById(res.locals.id)
   .then ((rebooter) => {
-    rebooter.acedemy = []
+    rebooter.academy = []
     req.body.forEach(element => {
     rebooter.academy.push(element)
   });
