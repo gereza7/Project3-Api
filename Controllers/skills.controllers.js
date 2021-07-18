@@ -52,4 +52,5 @@ function getAllSkills (req, res){
   })
 }
 
+
 module.exports = {createSkills, updateSkills, deleteSkills, getOneSkills, getAllSkills}
