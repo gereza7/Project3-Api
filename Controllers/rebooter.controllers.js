@@ -33,7 +33,7 @@ function deleteRebooter(req,res){
 
 function getOneRebooter (req, res){
   rebooterModel.findById(res.locals.id)
-  .populate("experience")
+  .populate('skills.skills')
   .then ((rebooter) => {
      res.json(rebooter)
   })
@@ -110,12 +110,7 @@ function getExperience (req, res){
 
 function getSkills (req, res){
   rebooterModel.findById(res.locals.id)
-  .populate({
-    path:'skills', 
-    populate: {
-      path: 'skills'
-    }
-  })
+
   .then ((rebooter) => {
     rebooter.skills = []
     req.body.forEach(element => {
