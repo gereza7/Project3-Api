@@ -58,12 +58,12 @@ function getSoftSkills (req, res){
   .then ((rebooter) => {
   req.headers.data.forEach(element => {
     rebooter.skills.push(element)
-    rebooter.save(function (err) {
-      if (err) return handleError(err)
-      console.log('Success!');
-      res.json(rebooter)
-    });
   });
+  rebooter.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+  res.json(rebooter)
 })
 .catch((err) => {
   res.json(err)
