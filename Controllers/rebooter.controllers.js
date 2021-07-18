@@ -72,4 +72,22 @@ function getSoftSkills (req, res){
 })
 }
 
-module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllRebooter, getSoftSkills}
+function getAcademy (req, res){
+  rebooterModel.findById(res.locals.id)
+  .then ((rebooter) => {
+    rebooter.acedemy = []
+    req.body.forEach(element => {
+    rebooter.academy.push(element)
+  });
+  rebooter.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+  res.json(rebooter)
+})
+.catch((err) => {
+  res.json(err)
+})
+}
+
+module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllRebooter, getSoftSkills, getAcademy}
