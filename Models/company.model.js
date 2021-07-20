@@ -24,12 +24,6 @@ const companySchema = new mongoose.Schema({
   companyName: {
     type: String,
   },
-  companyUserName: {
-    type: String,
-  },
-  companyUserSurname: {
-    type: String,
-  },
   companyCountry: {
     type: String,
   },
@@ -39,14 +33,14 @@ const companySchema = new mongoose.Schema({
   companyAdress: {
     type: String,
   },
-  selectCountryCode: {
+  companySelectCountryCode: {
 type: String
   },
  
-  phoneNumber: {
+  companyPhoneNumber: {
     type: Number,
   },
-  aboutMe: {
+  companyAboutMe: {
     type: String,
   }
 })

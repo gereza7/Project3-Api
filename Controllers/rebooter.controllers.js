@@ -42,6 +42,16 @@ function getOneRebooter (req, res){
   })
 }
 
+function getRebooterById (req, res){
+  rebooterModel.findById(req.params.id)
+  .populate('skills.skills')
+  .then ((rebooter) => {
+     res.json(rebooter)
+  })
+  .catch((err) => {
+      res.json(err)
+  })
+}
 
 function getAllRebooter (req, res){
   rebooterModel.find()
@@ -127,4 +137,4 @@ function getSkills (req, res){
 })
 }
 
-module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills}
+module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills}
