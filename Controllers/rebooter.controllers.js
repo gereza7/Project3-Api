@@ -138,4 +138,44 @@ function getSkills (req, res){
 })
 }
 
-module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills}
+function getProjects (req, res){
+  rebooterModel.findById(res.locals.id)
+
+  .then ((rebooter) => {
+    rebooter.projects = []
+    req.body.forEach(element => {
+    rebooter.projects.push(element)
+  });
+  rebooter.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+  res.json(rebooter)
+})
+.catch((err) => {
+  res.json(err)
+})
+}
+
+function getLanguages (req, res){
+  rebooterModel.findById(res.locals.id)
+
+  .then ((rebooter) => {
+    rebooter.languages = []
+    req.body.forEach(element => {
+    rebooter.languages.push(element)
+  });
+  rebooter.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+  res.json(rebooter)
+})
+.catch((err) => {
+  res.json(err)
+})
+}
+
+
+
+module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages}
