@@ -129,6 +129,12 @@ type: String
   aboutMe: {
     type: String,
   },
+  githubContact : {
+    type:String,
+  },
+  emailContact : {
+    type: String
+  },
   skills: [userSkillsSchema],
   academy: [academy],
   experience: [experience],
