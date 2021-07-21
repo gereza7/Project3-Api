@@ -55,6 +55,7 @@ function getRebooterById (req, res){
 
 function getAllRebooter (req, res){
   rebooterModel.find()
+  .populate('skills.skills')
   .then ((rebooter) => {
      res.json(rebooter)
   })
