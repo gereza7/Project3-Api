@@ -1,6 +1,6 @@
 const rebooterRouter = require ('express').Router()
 const jwt = require ('jsonwebtoken')
-const {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages} = require ('../Controllers/rebooter.controllers')
+const {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages, deleteLanguage} = require ('../Controllers/rebooter.controllers')
 
 rebooterRouter.post("/", auth, createRebooter)
 rebooterRouter.put("/me", auth, updateRebooter)
@@ -14,6 +14,8 @@ rebooterRouter.put("/me/experience", auth, getExperience)
 rebooterRouter.put("/me/skills", auth, getSkills)
 rebooterRouter.put("/me/projects", auth, getProjects)
 rebooterRouter.put("/me/languages", auth, getLanguages)
+rebooterRouter.delete("/me/languages", auth, deleteLanguage)
+
 
 
 function auth(req, res, next) {

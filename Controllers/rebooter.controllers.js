@@ -161,7 +161,7 @@ function getLanguages (req, res){
   rebooterModel.findById(res.locals.id)
 
   .then ((rebooter) => {
-    rebooter.languages.push(req.data)
+    rebooter.languages.push(req.body)
 
   rebooter.save(function (err) {
     if (err) return handleError(err)
@@ -173,6 +173,14 @@ function getLanguages (req, res){
   res.json(err)
 })
 }
+function deleteLanguage(req,res){
+  rebooterModel.findByIdAndDelete ({_id : req.body})
+  .then ((rebooter) => {
+      res.json("rebooter deleted successfully")
+  })
+  .catch((err) => {
+      res.json(err)
+  })
+}
 
-
-module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages}
+module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages, deleteLanguage}
