@@ -14,7 +14,7 @@ rebooterRouter.put("/me/experience", auth, getExperience)
 rebooterRouter.put("/me/skills", auth, getSkills)
 rebooterRouter.put("/me/projects", auth, getProjects)
 rebooterRouter.put("/me/languages", auth, getLanguages)
-rebooterRouter.delete("/me/languages", auth, deleteLanguage)
+rebooterRouter.delete("/me/languages/:id", auth, deleteLanguage)
 
 
 
