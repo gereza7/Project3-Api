@@ -161,10 +161,8 @@ function getLanguages (req, res){
   rebooterModel.findById(res.locals.id)
 
   .then ((rebooter) => {
-    rebooter.languages = []
-    req.body.forEach(element => {
-    rebooter.languages.push(element)
-  });
+    rebooter.languages.push(req.data)
+
   rebooter.save(function (err) {
     if (err) return handleError(err)
     console.log('Success!');
@@ -175,7 +173,6 @@ function getLanguages (req, res){
   res.json(err)
 })
 }
-
 
 
 module.exports = {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getRebooterById, getAllRebooter, getSoftSkills, getAcademy, getExperience, getSkills,getProjects,getLanguages}
