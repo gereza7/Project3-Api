@@ -174,7 +174,7 @@ function getLanguages (req, res){
 })
 }
 function deleteLanguage(req,res){
-  rebooterModel.findByIdAndDelete ({"languages._id" : req.params.id})
+  rebooterModel.findByIdAndDelete ({"languages[0]._id" : req.params.id})
   .then ((rebooter) => {
       res.json("rebooter deleted successfully")
   })
