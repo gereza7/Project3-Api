@@ -125,6 +125,9 @@ type: String
   video : {
     type:String,
   },
+  busco : {
+    type:String,
+  },
   skills: [userSkillsSchema],
   academy: [academy],
   experience: [experience],
