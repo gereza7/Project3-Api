@@ -7,22 +7,22 @@ const academy = new mongoose.Schema({
   studyCenter: String,
   country: String,
   duration: String,
-  currentlyStuding: Boolean
 })
 
 const experience = new mongoose.Schema({
   position: String,
   enterprise: String,
-  yearsOfExperience: String,
-  shortDescription: String,
-  fullDescription: String
+  fullDescription: String,
+  startYear : Number,
+  endYear : Number,
 })
 
 const projects = new mongoose.Schema({
   name: String,
-  shortDescription: String,
   projectLink: String,
-  fullDescription: String
+  fullDescription: String,
+  demoLink : String,
+  video: String,
 })
 
 const languages = new mongoose.Schema({
@@ -134,6 +134,12 @@ type: String
   },
   emailContact : {
     type: String
+  },
+  linkedin : {
+    type: String
+  },
+  video : {
+    type:String,
   },
   skills: [userSkillsSchema],
   academy: [academy],
