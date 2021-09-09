@@ -50,25 +50,9 @@ const userSkillsSchema = new mongoose.Schema({
   },
   yearsOfExperience: {
     type: String,
-    enum:[
-      'Menos de 1 año',
-      '1 año',
-      '2 años',
-      '3 años',
-      '4 años',
-      'Más de 5 años'
-    ] 
   },
   latestUse:{
     type: String,
-    enum:[
-      'Actualmente',
-      'menos de 1 año',
-      '2 años',
-      '3 años',
-      '4 años',
-      'Más de 5 años'
-    ] 
   },
   certifications: {
     type: Array
