@@ -5,7 +5,7 @@ const {createRebooter, updateRebooter, deleteRebooter, getOneRebooter, getReboot
 rebooterRouter.post("/", auth, createRebooter)
 rebooterRouter.put("/me", auth, updateRebooter)
 rebooterRouter.delete("/me", auth, deleteRebooter)
-rebooterRouter.get("/me", auth, getOneRebooter)
+rebooterRouter.get("/me", getOneRebooter)
 rebooterRouter.get("/all",  getAllRebooter)
 rebooterRouter.get("/:id", auth, getRebooterById)
 rebooterRouter.put("/me/softskills", auth, getSoftSkills)
