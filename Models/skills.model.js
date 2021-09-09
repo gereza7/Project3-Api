@@ -6,7 +6,9 @@ const skillSchema = new mongoose.Schema ({
       'Database',
       'FrontEnd',
       'BackEnd',
-      'Programing Lenguage'
+      'Programing Lenguage',
+      'Design',
+      'Other',
     ]
   },
   name:{
