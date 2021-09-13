@@ -128,6 +128,9 @@ type: String
   busco : {
     type:String,
   },
+  working : {
+    type: Boolean
+  },
   skills: [userSkillsSchema],
   academy: [academy],
   experience: [experience],
